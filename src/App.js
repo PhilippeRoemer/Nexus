@@ -3,22 +3,20 @@ import "./App.css";
 import { useState } from "react";
 
 function App() {
-    const [randomURL, setRandomURL] = useState("");
+    const [randomURL, setRandomURL] = useState(null);
 
-    const [newLink, setNewLink] = useState(2);
     const [linkList, setLinkList] = useState([
         { link: "", title: "" },
         { link: "", title: "" },
     ]);
 
     const URL_Generator = () => {
-        console.log("it works");
         setRandomURL(Math.random().toString(36).substring(2, 10));
     };
 
     const addNewLink = () => {
         console.log(linkList);
-        setLinkList([...linkList, { link: "" }]);
+        setLinkList([...linkList, { link: "", title: "" }]);
     };
 
     const removeLink = (index) => {
@@ -51,16 +49,31 @@ function App() {
             {linkList.map((singleList, index) => (
                 <div key={index}>
                     <h1>Link {index + 1}</h1>
-                    <div>
-                        <input name="link" id="link" type="text" placeholder="Link - https://" value={singleList.link} onChange={(e) => URLchange(e, index)} />
-                        <input name="title" id="title" type="text" placeholder="Title (optional)" value={singleList.title} onChange={(e) => URLtitleChange(e, index)} />
+                    <div className="inputContainer">
+                        <div>
+                            <div>
+                                <label>Link:</label>
+                                <input name="link" id="link" type="text" placeholder="https://" value={singleList.link} onChange={(e) => URLchange(e, index)} />{" "}
+                            </div>
+                            <div>
+                                <label>Title:</label>
+                                <input name="title" id="title" type="text" placeholder="(optional)" value={singleList.title} onChange={(e) => URLtitleChange(e, index)} />
+                            </div>
+                        </div>
+                        <div>
+                            {linkList.length > 2 ? (
+                                <button onClick={() => removeLink(index)} className="removeLinkButton">
+                                    X
+                                </button>
+                            ) : null}
+                        </div>
                     </div>
-                    {linkList.length > 2 ? <button onClick={() => removeLink(index)}>Remove Link</button> : null}
                 </div>
             ))}
             {linkList.length >= 4 ? null : <button onClick={addNewLink}>NEW LINKS</button>}
+
             <button onClick={URL_Generator}>Create Link</button>
-            <p>{randomURL}</p>
+            {randomURL !== null ? <p>Generated URL - https://####.com/{randomURL}</p> : null}
         </div>
     );
 }
