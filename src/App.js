@@ -1,21 +1,29 @@
 import React from "react";
 import "./App.css";
 import { useState } from "react";
+import { db } from "../firebase-config";
+import { collection, getDocs, addDoc, updateDoc, doc, deleteDoc, Timestamp, Firestore, increment, setDoc } from "firebase/firestore";
 
 function App() {
     const [randomURL, setRandomURL] = useState(null);
+    const [pageTitle, setPageTitle] = useState("");
 
     const [linkList, setLinkList] = useState([
         { link: "", title: "" },
         { link: "", title: "" },
     ]);
 
-    const URL_Generator = () => {
-        setRandomURL(Math.random().toString(36).substring(2, 10));
+    const URL_Generator = async () => {
+        const linkID = Math.random().toString(36).substring(2, 10);
+        const linkCollectionRef = collection(db, "generated_links", linkID, "links");
+        const linkRef = doc(db, "generated_links", linkID);
+        await setDoc(linkRef, { title: pageTitle, background: "0", created: Timestamp.now() });
+        await addDoc(linkCollectionRef, { linkList });
+
+        setRandomURL(linkID);
     };
 
     const addNewLink = () => {
-        console.log(linkList);
         setLinkList([...linkList, { link: "", title: "" }]);
     };
 
@@ -44,7 +52,7 @@ function App() {
             <h1>Nexus</h1>
             <div>
                 <h1>Page Title</h1>
-                <input type="text" placeholder="Title" />
+                <input type="text" placeholder="Title" onChange={(e) => setPageTitle(e.target.value)} />
             </div>
             {linkList.map((singleList, index) => (
                 <div key={index}>
@@ -73,7 +81,14 @@ function App() {
             {linkList.length >= 4 ? null : <button onClick={addNewLink}>NEW LINKS</button>}
 
             <button onClick={URL_Generator}>Create Link</button>
-            {randomURL !== null ? <p>Generated URL - https://####.com/{randomURL}</p> : null}
+            {randomURL !== null ? (
+                <div>
+                    <a href={"http://localhost:3000/" + randomURL} target="_blank" rel="noreferrer">
+                        Open link in new tab
+                    </a>
+                    <p>Generated URL - https://####.com/{randomURL}</p>
+                </div>
+            ) : null}
         </div>
     );
 }
