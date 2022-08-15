@@ -29,18 +29,22 @@ function Links() {
     }, []);
 
     return (
-        <div>
-            Link ID - {linkID}!<p>{title}</p>
-            <p>{background}</p>
-            {links.map((link, index) => {
-                return (
-                    <ul key={index}>
-                        <li>
-                            <a href={link.link}>{link.title}</a>
-                        </li>
-                    </ul>
-                );
-            })}
+        <div className={"container backgroundColor" + background}>
+            <div className="logoContainer">
+                <h1 className="logo">Nexus</h1>
+            </div>
+            <div className="linkContainer">
+                <h1>{title}</h1>
+                {links.map((link, index) => {
+                    return (
+                        <ul key={index}>
+                            <li>
+                                <a href={link.link}>{link.title === "" ? link.link : link.title}</a>
+                            </li>
+                        </ul>
+                    );
+                })}
+            </div>
         </div>
     );
 }
