@@ -49,54 +49,81 @@ function Home() {
     };
 
     return (
-        <div className="container">
+        <div className="container backgroundColor1">
             <div className="logoContainer">
                 <h1 className="logo">Nexus</h1>
             </div>
             <div className="linkContainer">
-                <div>
+                <div className="titleContainer">
                     <h1>Page Title</h1>
                     <input type="text" placeholder="Title" onChange={(e) => setPageTitle(e.target.value)} />
                 </div>
                 {linkList.map((singleList, index) => (
                     <div key={index}>
-                        <h1>Link {index + 1}</h1>
+                        <h2>Link {index + 1}</h2>
                         <div className="inputContainer">
                             <div>
-                                <div>
-                                    <label>Link:</label>
-                                    <input name="link" id="link" type="text" placeholder="https://" value={singleList.link} onChange={(e) => URLchange(e, index)} />{" "}
+                                <div className="linkInputContainer">
+                                    <div className="prependInput">
+                                        <span>https://</span>
+                                    </div>
+                                    <input name="link" id="link" type="text" value={singleList.link} onChange={(e) => URLchange(e, index)} /> {/*  </div> */}
                                 </div>
-                                <div>
-                                    <label>Title:</label>
-                                    <input name="title" id="title" type="text" placeholder="(optional)" value={singleList.title} onChange={(e) => URLtitleChange(e, index)} />
+
+                                <div className="titleInputContainer">
+                                    <div className="prependInput">
+                                        <span>Title</span>
+                                    </div>
+                                    <input name="title" id="title" type="text" placeholder="(optional)" value={singleList.title} onChange={(e) => URLtitleChange(e, index)} className="titleInput" />
                                 </div>
                             </div>
                             <div>
                                 {linkList.length > 2 ? (
-                                    <button onClick={() => removeLink(index)} className="removeLinkButton">
+                                    <div onClick={() => removeLink(index)} className="removeLinkButton">
                                         X
-                                    </button>
+                                    </div>
                                 ) : null}
                             </div>
                         </div>
                     </div>
                 ))}
-                {linkList.length >= 4 ? null : <button onClick={addNewLink}>Add Link</button>}
-                <div>
-                    <input type="radio" id="1" name="background" value="1" onClick={() => setSelectedBackground("1")} /> <label for="1">1</label>
-                    <br />
-                    <input type="radio" id="2" name="background" value="2" onClick={() => setSelectedBackground("2")} /> <label for="2">2</label>
-                    <br />
-                    <input type="radio" id="3" name="background" value="3" onClick={() => setSelectedBackground("3")} /> <label for="3">3</label>
-                </div>
-                <button onClick={URL_Generator}>Create Link</button>
-                {randomURL !== null ? (
+                {linkList.length >= 4 ? null : (
+                    <div onClick={addNewLink} className="button">
+                        Add Another Link
+                    </div>
+                )}
+                <h2 className="backgroundTitle">Select a background</h2>
+                <div className="backgroundInputs">
                     <div>
+                        <input type="radio" id="1" name="background" value="1" onClick={() => setSelectedBackground("1")} />{" "}
+                        <label for="1">
+                            1<div className="backgroundContainer backgroundColor1"></div>
+                        </label>
+                    </div>
+
+                    <div>
+                        <input type="radio" id="2" name="background" value="2" onClick={() => setSelectedBackground("2")} />{" "}
+                        <label for="2">
+                            2<div className="backgroundContainer backgroundColor2"></div>
+                        </label>
+                    </div>
+
+                    <div>
+                        <input type="radio" id="3" name="background" value="3" onClick={() => setSelectedBackground("3")} />{" "}
+                        <label for="3">
+                            3<div className="backgroundContainer backgroundColor3"></div>
+                        </label>
+                    </div>
+                </div>
+                <div onClick={URL_Generator} className="button">
+                    Create Link
+                </div>
+                {randomURL !== null ? (
+                    <div className="generatedURLContainer">
                         <a href={"http://localhost:3000/" + randomURL} target="_blank" rel="noreferrer">
                             Open link in new tab
                         </a>
-                        <p>Generated URL - https://####.com/{randomURL}</p>
+                        <p className="generatedURL">Generated URL - https://####.com/{randomURL}</p>
                     </div>
                 ) : null}
             </div>
