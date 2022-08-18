@@ -56,6 +56,11 @@ function Home() {
         tooltip.innerHTML = "Copied";
     };
 
+    const resetCopyTooltip = () => {
+        var tooltip = document.getElementById("myTooltip");
+        tooltip.innerHTML = "Click to copy link";
+    };
+
     return (
         <div className="container backgroundColor1">
             <div className="logoContainer">
@@ -171,7 +176,7 @@ function Home() {
                             Open link in new tab
                         </a>
                         <p className="generatedURL">Generated URL - https://####.com/{randomURL}</p>
-                        <div className="copyLinkButton tooltip" onClick={copyLink}>
+                        <div className="copyLinkButton tooltip" onClick={copyLink} onMouseOut={resetCopyTooltip}>
                             <span class="tooltiptext" id="myTooltip">
                                 Click to copy link
                             </span>
