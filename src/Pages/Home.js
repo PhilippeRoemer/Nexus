@@ -50,6 +50,12 @@ function Home() {
         setLinkList(list);
     };
 
+    const copyLink = () => {
+        navigator.clipboard.writeText("http://localhost:3000/" + randomURL);
+        const tooltip = document.getElementById("myTooltip");
+        tooltip.innerHTML = "Copied";
+    };
+
     return (
         <div className="container backgroundColor1">
             <div className="logoContainer">
@@ -129,27 +135,34 @@ function Home() {
                         </div>
                     </>
                 ) : (
-                    <>
+                    <div className="generatedItemInfo">
                         <h1>{pageTitle}</h1>
-                        {linkList.map((test, index) => (
+                        {linkList.map((link, index) => (
                             <div key={index}>
                                 <h2>Link {index + 1}</h2>
                                 <div className="inputContainer">
                                     <div>
                                         <div className="linkInputContainer">
-                                            <p>Link: {test.link}</p>
+                                            <p>
+                                                <b>Link:</b> {link.link}
+                                            </p>
                                         </div>
-
-                                        <div className="titleInputContainer">
-                                            <p>Title: {test.title}</p>
-                                        </div>
+                                        {link.title === "" ? null : (
+                                            <div className="titleInputContainer">
+                                                <p>
+                                                    <b>Title:</b> {link.title}
+                                                </p>
+                                            </div>
+                                        )}
                                     </div>
                                 </div>
                             </div>
                         ))}
-                        <h2>Background</h2>
-                        <div className={"backgroundContainer backgroundColor" + selectedBackground}></div>
-                    </>
+                        <h2>Selected Background</h2>
+                        <div className="selectedBackground">
+                            <div className={"backgroundContainer backgroundColor" + selectedBackground}></div>
+                        </div>
+                    </div>
                 )}
 
                 {randomURL !== null ? (
@@ -158,6 +171,12 @@ function Home() {
                             Open link in new tab
                         </a>
                         <p className="generatedURL">Generated URL - https://####.com/{randomURL}</p>
+                        <div className="copyLinkButton tooltip" onClick={copyLink}>
+                            <span class="tooltiptext" id="myTooltip">
+                                Click to copy link
+                            </span>
+                            Copy link
+                        </div>
                     </div>
                 ) : null}
             </div>
