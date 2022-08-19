@@ -70,7 +70,7 @@ function Home() {
                 {linkGenerated === false ? (
                     <>
                         <div className="titleContainer">
-                            <h1>Page Title</h1>
+                            <h1 className="pageTitle">Page Title</h1>
                             <div className="titleInputContainer">
                                 <div className="prependInput">
                                     <span>Title</span>
@@ -141,7 +141,7 @@ function Home() {
                     </>
                 ) : (
                     <div className="generatedItemInfo">
-                        <h1>{pageTitle}</h1>
+                        <h1 className="pageTitle">{pageTitle}</h1>
                         {linkList.map((link, index) => (
                             <div key={index}>
                                 <h2>Link {index + 1}</h2>

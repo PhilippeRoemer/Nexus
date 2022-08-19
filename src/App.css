@@ -62,6 +62,7 @@ input:focus {
 }
 
 .titleContainer {
+    margin-bottom: 15px;
 }
 
 .removeLinkButton {
@@ -83,10 +84,15 @@ input:focus {
     padding: 5px;
     color: #333;
     border-radius: 5px;
+    margin: 10px;
+    border-style: solid;
+    border-width: 2px;
+    border-color: #3c3c3c;
 }
 
 .button:hover {
     cursor: pointer;
+    border-color: #c6c6c6;
 }
 
 .backgroundTitle {
@@ -156,12 +162,96 @@ input:focus {
 
 .generatedURLContainer a:link {
     color: #ddd;
+    text-decoration: underline;
 }
 
 .generatedURLContainer a:visited {
     color: #ddd;
+    text-decoration: underline;
 }
 
 .generatedURL {
     margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.linkInputContainer {
+    display: flex;
+}
+
+.titleInputContainer {
+    display: flex;
+}
+
+.titleInput {
+    width: 100%;
+}
+
+.prependInput {
+    background-color: grey;
+    height: 31px;
+    display: flex;
+    align-items: center;
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+.selectedBackground {
+    display: flex;
+    justify-content: center;
+}
+
+.generatedItemInfo p,
+h2 {
+    margin-bottom: 15px;
+}
+
+.copyLinkButton {
+    text-decoration: underline;
+}
+
+.copyLinkButton:hover {
+    cursor: pointer;
+}
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 140px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px;
+    position: absolute;
+    z-index: 1;
+    bottom: 150%;
+    left: 50%;
+    margin-left: -75px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.tooltip .tooltiptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+}
+
+.pageTitle {
+    margin-bottom: 15px;
 }
