@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/Nexus/static/css/main.581a27e8.css",
+    "main.js": "/Nexus/static/js/main.ddcd03e0.js",
+    "index.html": "/Nexus/index.html",
+    "main.581a27e8.css.map": "/Nexus/static/css/main.581a27e8.css.map",
+    "main.ddcd03e0.js.map": "/Nexus/static/js/main.ddcd03e0.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.581a27e8.css",
+    "static/js/main.ddcd03e0.js"
+  ]
+}
