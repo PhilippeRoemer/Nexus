@@ -30,18 +30,30 @@ function Links() {
 
     return (
         <div className={"container backgroundColor" + background}>
-            <div className="logoContainer">
-                <h1 className="logo">Nexus</h1>
+            <div>
+                <div className="logoContainer">
+                    <h1 className="logo">Nexus</h1>
+                </div>
             </div>
             <div className="linkContainer">
-                <h1>{title}</h1>
+                <h1 className="linkTitle">{title}</h1>
                 {links.map((link, index) => {
                     return (
-                        <ul key={index}>
-                            <li>
-                                <a href={link.link}>{link.title === "" ? link.link : link.title}</a>
-                            </li>
-                        </ul>
+                        <>
+                            {link.link.slice(0, 8) === "https://" ? (
+                                <a href={link.link} target="_blank" rel="noreferrer">
+                                    <div key={index} className="links">
+                                        {link.title === "" ? link.link : link.title}
+                                    </div>
+                                </a>
+                            ) : (
+                                <a href={"https://" + link.link} target="_blank" rel="noreferrer">
+                                    <div key={index} className="links">
+                                        {link.title === "" ? link.link : link.title}
+                                    </div>
+                                </a>
+                            )}
+                        </>
                     );
                 })}
             </div>
