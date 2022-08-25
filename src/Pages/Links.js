@@ -61,4 +61,4 @@ function Links() {
     );
 }
 
-export default Links;
+export { Links };
