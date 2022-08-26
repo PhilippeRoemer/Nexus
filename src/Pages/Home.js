@@ -51,7 +51,7 @@ function Home() {
     };
 
     const copyLink = () => {
-        navigator.clipboard.writeText("https://philipperoemer.github.io/Nexus/" + randomURL);
+        navigator.clipboard.writeText("https://philipperoemer.github.io/Nexus/#/link/" + randomURL);
         const tooltip = document.getElementById("myTooltip");
         tooltip.innerHTML = "Copied";
     };
@@ -172,10 +172,10 @@ function Home() {
 
                 {randomURL !== null ? (
                     <div className="generatedURLContainer">
-                        <a href={"https://philipperoemer.github.io/Nexus/" + randomURL} target="_blank" rel="noreferrer">
+                        <a href={"https://philipperoemer.github.io/Nexus/#/link/" + randomURL} target="_blank" rel="noreferrer">
                             Open link in new tab
                         </a>
-                        <p className="generatedURL">Generated URL - https://philipperoemer.github.io/Nexus/{randomURL}</p>
+                        <p className="generatedURL">Generated URL - https://philipperoemer.github.io/Nexus/#/link/{randomURL}</p>
                         <div className="copyLinkButton tooltip" onClick={copyLink} onMouseOut={resetCopyTooltip}>
                             <span class="tooltiptext" id="myTooltip">
                                 Click to copy link
